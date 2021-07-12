@@ -1,0 +1,43 @@
+{% extends 'bank/base.html' %}
+{% block title %}Transfers {% endblock title %}
+{% block div1 %}
+<style>
+tr
+{
+    font-size: 14.5px;
+}
+</style>
+<div class="my-2" style="text-align: center;">
+    <h5>Transfers History</h5>
+</div>
+<div class="mx-4 my-3">
+      <table class="table table-bordered border-success">
+          
+      <tr class="hdn bg-info" >
+        <th>Id</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Amount</th>
+        <th>Day</th>
+        <th>Time</th>
+      </tr>
+      {% for a in transfers %}
+      <tr>
+        {% for b in  a%}
+            {% if forloop.counter0 != 0 %}
+                {% if forloop.counter0 != 3 %}
+                <td>{{b}}</td>
+                {% else %}
+                <td><b>{{b}}</b></td>
+                {% endif %}               
+            {% else %}
+                <td>TR{{b}}</td>
+            {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+
+{% endblock div1 %}
+

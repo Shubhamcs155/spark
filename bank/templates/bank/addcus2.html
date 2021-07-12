@@ -1,0 +1,52 @@
+{% extends 'bank/base.html'%}
+{% block title %}Add Customers {% endblock title %}Add Customers 
+{% block div1 %}
+<style>
+.frm
+{
+    width: 492px;
+    height: 75vh;
+    background-color: #d6faac;
+    margin-top: 3.9vh;
+
+}
+.parent
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.frm-main
+{
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    padding-left: 25%;
+    padding-top: 7%;
+}
+label
+{
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+</style>
+<div class="parent">
+    <div class="child frm">
+        <div class="frm-main">
+            <form action="/addcus/" method="POST">
+                {% csrf_token %}
+                <label for="name"><b>User Name :</b> </label><br>
+                <input type="text" id="name" name="name" placeholder="Enter Name" required><br>
+                <label for="mail"><b>User Email :</b></label><br>
+                <input type="email" id="mail" name="mail" placeholder="Enter Mail" required><br>
+                <label for="cbal"><b> User Inital Balance :</b></label><br>
+                <input type="number" id="cbal" name="cbal" placeholder="Enter Amount" required><br>
+                <label for="date"><b> Starting Date :</b></label><br>
+                <input type="date" id="date" name="date" placeholder="Select Date" required><br>
+                <br><input type="submit" value="Submit" onclick="widnow.alert('done')">
+              </form> 
+        </div>
+    </div>    
+</div>
+{% endblock div1 %}
+

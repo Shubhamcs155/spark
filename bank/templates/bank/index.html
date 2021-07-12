@@ -1,0 +1,77 @@
+{% extends 'bank/base.html' %}
+{% block title %}Home {% endblock title %}
+{% block form %}
+    <style>
+    .btn-small 
+    {
+      border-radius: 5px;
+    }
+    input[type='number']
+    {
+      width: 90px;
+      font-size: 15px;
+    } 
+    .btn-small
+    {
+      padding: 1px;
+    }
+    .adj,.btn-primary
+    {
+      background-color: brown;
+    }
+    .payb,.btn-secondary
+    {
+      padding: 1px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 0px;
+      background-color: black;
+    }
+    .btn-secondary,.btn-small
+    {
+      font-size: 15px;
+    }
+    tr 
+    {
+      font-size: 15px;
+    } 
+</style>
+<div class="mx-4 my-4">
+<table class="table table-bordered border-success">
+  <tr class="hdn bg-info">
+    <th>Id</th>
+    <th>Customer Name</th>
+    <th>Email</th>
+    <th>Balance</th>
+    <th>Start Date</th>
+    <th>Action</th>
+  </tr>
+  {% for a in customers %}
+  <tr>
+    {% for b in  a%}
+    {% if forloop.counter != 4 %}
+      <td>{{b}}</td>
+    {% else %}
+    <td><b>{{b}}</b></td>
+    {% endif %}
+    {% endfor %}
+    <td>
+        <form action="/pay/" method="POST">
+        {% csrf_token %}
+        {% for z in a|slice:"3:4" %}
+        <input type="number" placeholder="enter amt" name="a" min="0" max="{{z}}" required>
+        {% endfor %}            
+        {% for z in a|slice:"0:1" %}
+          <textarea name="b" style="display: none;">{{z}}</textarea>
+        {% endfor %}
+        <button disabled class="btn btn-primary btn-small adj"><b>Transfer To</b></button>          
+        <input type="number" placeholder="enter id" name="c" required> 
+        <button type="submit" class="btn btn-secondary payb">pay</button>           
+        </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock form %}
+
